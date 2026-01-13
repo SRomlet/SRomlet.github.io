@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mensaje Enviado! | SRomlet - Desarrolladora Front-End</title>
+    
+    <meta name="description" content="Confirmación de contacto exitoso - SRomlet, desarrolladora Front-End">
+    <meta name="keywords" content="contacto exitoso, mensaje enviado, desarrolladora frontend, SRomlet">
+    <meta name="author" content="SRomlet">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <link rel="stylesheet" href="styles.css">
+<style>
+
+    .pagina-gracias {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e3e8f0 100%);
+        text-align: center;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    
+</style>
+
+</head>
+
+<body class="pagina-gracias">
+    <main>
+        <div class="contenedor-principal">
+            <div class="icono-exito">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1>¡Mensaje Enviado con Éxito!</h1>
+            
+            <p class="subtitulo">Gracias por confiar en mí para tu proyecto digital</p>
+            
+            <div class="mensaje">
+                <p>He recibido tu solicitud y la revisaré personalmente en las próximas horas.</p>
+                <p>Te contactaré para discutir los detalles y crear una solución perfecta para tu negocio.</p>
+            </div>
+            
+            <div class="detalles">
+                <h3><i class="fas fa-info-circle"></i> ¿Qué sigue?</h3>
+                <p>1. Revisaré tu proyecto y necesidades específicas</p>
+                <p>2. Prepararé una propuesta personalizada con tiempos y costos</p>
+                <p>3. Te contactaré por email o WhatsApp para coordinar</p>
+            </div>
+            
+            <div class="grupo-botones">
+                <a href="index.html" class="btn">
+                    <i class="fas fa-arrow-left"></i> Volver al Portafolio
+                </a>
+                <a href="index.html#proyectos" class="btn btn-secundario">
+                    <i class="fas fa-code"></i> Ver Mis Proyectos
+                </a>
+            </div>
+            
+            <div class="contador">
+                <i class="fas fa-clock"></i> Redirigiendo en <span id="contador">10</span> segundos...
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 SRomlet - Desarrolladora Front-End</p>
+        <p><a href="mailto:ricardosahily140@gmail.com">ricardosahily140@gmail.com</a> | <a href="tel:+53563263899">+53 563 263 899</a></p>
+    </footer>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let segundos = 30;
+            const contadorElement = document.getElementById('contador');
+            const contadorInterval = setInterval(() => {
+                segundos--;
+                contadorElement.textContent = segundos;
+                
+                if (segundos <= 0) {
+                    clearInterval(contadorInterval);
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+            
+            function crearConfetti() {
+                const colores = ['#FF1493', '#EC4899', '#FF6B9D', '#FF4081'];
+                
+                for (let i = 0; i < 20; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animacion = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    animacion.onfinish = () => confetti.remove();
+                }
+            }
+            
+            setTimeout(crearConfetti, 500);
+            setTimeout(crearConfetti, 1500);
+            
+            const añoActual = new Date().getFullYear();
+            document.querySelector('footer p').innerHTML = `© ${añoActual} SRomlet - Desarrolladora Front-End`;
+            
+            document.querySelectorAll('.btn, .btn-secundario').forEach(boton => {
+                boton.addEventListener('click', function(e) {
+                    clearInterval(contadorInterval);
+                    contadorElement.style.display = 'none';
+                });
+            });
+            
+        });
+    </script>
+</body>
+</html>

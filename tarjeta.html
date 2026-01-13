@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tarjeta de Contacto | SRomlet</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+<style>
+    .pagina-tarjeta {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    .pagina-tarjeta .contenedor-principal {
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+    }
+    
+    .pagina-tarjeta h1 {
+        color: var(--color-secundario);
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .tarjeta {
+        background: var(--color-blanco);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    /* ... resto de estilos específicos de tarjeta ... */
+</style>
+
+</head>
+
+<body class="pagina-tarjeta">
+    <div class="contenedor-principal">
+        <h1>Mi Tarjeta de Presentación Digital</h1>
+        
+        <div class="tarjeta">
+            <div class="tarjeta-banner"></div>
+            <img src="foto.jpg" 
+                 alt="SRomlet - Desarrolladora Front-End" 
+                 class="foto-perfil">
+            
+            <div class="tarjeta-info">
+                <h2 class="nombre">SRomlet</h2>
+                <p class="titulo">Desarrolladora Front-End</p>
+                <p class="descripcion">Transformando mi carrera de estomatología al desarrollo web. Madre, autodidacta y apasionada por crear experiencias digitales.</p>
+            </div>
+            
+            <!-- NUEVA SECCIÓN DE HABILIDADES -->
+            <div class="tarjeta-habilidades">
+                <h3 class="habilidades-titulo">Mis Habilidades</h3>
+                <div class="habilidades-grid">
+                    <div class="habilidad">
+                        <div class="habilidad-icono">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <span class="habilidad-nombre">HTML5</span>
+                        <div class="habilidad-nivel">
+                            <div class="habilidad-progreso" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="habilidad">
+                        <div class="habilidad-icono">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <span class="habilidad-nombre">CSS3</span>
+                        <div class="habilidad-nivel">
+                            <div class="habilidad-progreso" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="habilidad">
+                        <div class="habilidad-icono">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <span class="habilidad-nombre">JavaScript</span>
+                        <div class="habilidad-nivel">
+                            <div class="habilidad-progreso" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tarjeta-acciones">
+                <a href="index.html#contacto" class="btn btn-primario">
+                    <i class="fas fa-paper-plane"></i> Contactar
+                </a>
+                <a href="https://wa.me/5363263899" target="_blank" class="btn btn-secundario">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+        
+        <p class="nota">¡Tarjeta interactiva creada con CSS Flexbox y Animaciones!</p>
+        
+        <div class="volver-portafolio">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i> Volver al Portafolio Principal
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const barrasProgreso = document.querySelectorAll('.habilidad-progreso');
+            
+            setTimeout(() => {
+                barrasProgreso.forEach(barra => {
+                    const anchoOriginal = barra.style.width;
+                    barra.style.width = '0%';
+                    
+                    setTimeout(() => {
+                        barra.style.transition = 'width 1.5s ease-in-out';
+                        barra.style.width = anchoOriginal;
+                    }, 300);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
