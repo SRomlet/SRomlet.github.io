@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -15,24 +15,135 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
     <link rel="stylesheet" href="styles.css">
-<style>
-
-    .pagina-gracias {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #f5f7fa 0%, #e3e8f0 100%);
-        text-align: center;
-        padding: 20px;
-        line-height: 1.6;
-    }
     
-</style>
-
+    <style>
+        .pagina-gracias {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e8f0 100%);
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .confetti {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        
+        .contenedor-principal {
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .icono-exito {
+            font-size: 4rem;
+            color: #FF1493;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .subtitulo {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .mensaje p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .detalles {
+            background: rgba(255, 20, 147, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .detalles h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .detalles p {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .grupo-botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FF1493, #EC4899);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+        
+        .btn-secundario {
+            background: transparent;
+            color: #FF1493;
+            border: 2px solid #FF1493;
+        }
+        
+        .btn-secundario:hover {
+            background: #FF1493;
+            color: white;
+        }
+        
+        .contador {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grupo-botones {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .contenedor-principal {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body class="pagina-gracias">
@@ -73,11 +184,6 @@
         </div>
     </main>
     
-    <footer>
-        <p>© 2024 SRomlet - Desarrolladora Front-End</p>
-        <p><a href="mailto:ricardosahily140@gmail.com">ricardosahily140@gmail.com</a> | <a href="tel:+53563263899">+53 563 263 899</a></p>
-    </footer>
-   
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let segundos = 30;
@@ -122,16 +228,12 @@
             setTimeout(crearConfetti, 500);
             setTimeout(crearConfetti, 1500);
             
-            const añoActual = new Date().getFullYear();
-            document.querySelector('footer p').innerHTML = `© ${añoActual} SRomlet - Desarrolladora Front-End`;
-            
             document.querySelectorAll('.btn, .btn-secundario').forEach(boton => {
                 boton.addEventListener('click', function(e) {
                     clearInterval(contadorInterval);
                     contadorElement.style.display = 'none';
                 });
             });
-            
         });
     </script>
 </body>
