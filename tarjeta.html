@@ -508,7 +508,7 @@
                 <a href="index.html#contacto" class="btn btn-primario">
                     <i class="fas fa-paper-plane"></i> Contactar
                 </a>
-                <a href="https://wa.me/5363263899" target="_blank" class="btn btn-secundario">
+                <a href="#" onclick="abrirWhatsAppSeguro()" class="btn btn-secundario">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
@@ -676,6 +676,19 @@ document.addEventListener('DOMContentLoaded', function() {
         subtree: true
     });
 });
+       function abrirWhatsAppSeguro() {
+    const parte1 = '53';
+    const parte2 = '6';
+    const parte3 = '32';
+    const parte4 = '63';
+    const parte5 = '899';
+    const telefono = parte1 + parte2 + parte3 + parte4 + parte5;
+    
+    const mensaje = 'Hola SRomlet, vi tu tarjeta de contacto y me gustaría conversar contigo.';
+    
+    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    return false;
+        } 
     </script>
 </body>
 </html>
