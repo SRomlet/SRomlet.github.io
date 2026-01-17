@@ -31,7 +31,7 @@
         }
 
         function enviarWhatsApp() {
-            const telefono = '53'+'6'+'32'+'63'+'899';
+            const telefono = '5363263899';
             const mensaje = 'Hola SRomlet, vi tu portafolio y me gustaría contactarte.';
             
             window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
