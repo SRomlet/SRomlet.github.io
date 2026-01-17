@@ -552,6 +552,130 @@
                 }, 500);
             });
         });
+      document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        protegerImagenes();
+    }, 1000);
+});
+
+function protegerImagenes() {
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            mostrarMensajeProteccion();
+            return false;
+        }
+    });
+    
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    document.querySelectorAll('img').forEach(function(img) {
+        img.setAttribute('draggable', 'false');
+        img.setAttribute('data-protected', 'true');
+        if (img.classList.contains('foto-perfil')) {
+            img.title = '© SRomlet - Imagen protegida';
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            mostrarMensajeProteccion();
+            return false;
+        }
+        
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+            e.preventDefault();
+            mostrarMensajeProteccion();
+            return false;
+        }
+        
+        if (e.key === 'PrintScreen') {
+            setTimeout(function() {
+                mostrarMensajeProteccion();
+            }, 100);
+        }
+    });
+}
+
+function mostrarMensajeProteccion() {
+    const mensaje = document.createElement('div');
+    mensaje.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 20, 147, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            max-width: 300px;
+            animation: aparecerMensaje 0.3s ease;
+        ">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                <i class="fas fa-lock"></i>
+                <strong>Imagen protegida</strong>
+            </div>
+            <div style="font-size: 0.85rem; opacity: 0.9;">
+                © SRomlet - Tarjeta de Contacto
+            </div>
+        </div>
+    `;
+    
+    const estilo = document.createElement('style');
+    estilo.textContent = `
+        @keyframes aparecerMensaje {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes desaparecerMensaje {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100px); opacity: 0; }
+        }
+    `;
+    
+    document.head.appendChild(estilo);
+    document.body.appendChild(mensaje);
+    
+    setTimeout(function() {
+        if (mensaje.parentNode) {
+            mensaje.style.animation = 'desaparecerMensaje 0.3s ease';
+            setTimeout(function() {
+                if (mensaje.parentNode) {
+                    mensaje.parentNode.removeChild(mensaje);
+                }
+            }, 300);
+        }
+    }, 3000);
+}
+
+const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.tagName === 'IMG' || (node.querySelectorAll && node.querySelectorAll('img').length)) {
+                    setTimeout(protegerImagenes, 100);
+                }
+            });
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});
     </script>
 </body>
 </html>
