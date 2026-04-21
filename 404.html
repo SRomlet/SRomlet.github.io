@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | SRomlet</title>
+    
+    <meta name="description" content="Página no encontrada - Portafolio de SRomlet">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-rosa: #D47282;
+            --color-rosa-oscuro: #B85C6B;
+            --color-azul: #1A2A44;
+            --color-gris-claro: #718096;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F8F9FA 0%, #F5E6E8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .contenedor {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(212, 114, 130, 0.2);
+            animation: aparecer 0.5s ease-out;
+        }
+
+        @keyframes aparecer {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .codigo {
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--color-rosa);
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -0.05em;
+        }
+
+        h1 {
+            color: var(--color-azul);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--color-gris-claro);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--color-rosa);
+            color: white;
+        }
+
+        .btn:hover {
+            background: var(--color-rosa-oscuro);
+            transform: translateY(-3px);
+        }
+
+        .sugerencias {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .sugerencias p {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            color: var(--color-rosa);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            color: var(--color-rosa-oscuro);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 40px 25px;
+            }
+            
+            .codigo {
+                font-size: 6rem;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="codigo">404</div>
+        <h1>Página no encontrada</h1>
+        <p>Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+        
+        <a href="index.html" class="btn">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+        
+        <div class="sugerencias">
+            <p>¿Buscas alguno de estos enlaces?</p>
+            <div class="links">
+                <a href="index.html#proyectos">Proyectos</a>
+                <a href="index.html#habilidades">Habilidades</a>
+                <a href="index.html#contacto">Contacto</a>
+                <a href="tarjeta.html">Tarjeta digital</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

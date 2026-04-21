@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tarjeta de Contacto | SRomlet</title>
+    
+    <meta name="description" content="Tarjeta de contacto digital de SRomlet - Desarrolladora Front-End & Full Stack en formación (Python)">
+    <meta name="author" content="SRomlet">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-rosa: #D47282;
+            --color-rosa-oscuro: #B85C6B;
+            --color-rosa-suave: #F5E6E8;
+            --color-azul: #1A2A44;
+            --color-gris: #2D3748;
+            --color-gris-claro: #718096;
+            --color-fondo: #FFFFFF;
+            --sombra: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --sombra-hover: 0 30px 50px rgba(0, 0, 0, 0.15);
+            --transicion: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F8F9FA 0%, var(--color-rosa-suave) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fondoAnimado 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes fondoAnimado {
+            0% { background: linear-gradient(135deg, #F8F9FA 0%, #F5E6E8 100%); }
+            100% { background: linear-gradient(135deg, #EDF2F7 0%, #F0E2E4 100%); }
+        }
+
+        .contenedor-principal {
+            width: 100%;
+            max-width: 580px;
+            text-align: center;
+            animation: aparecer 0.8s ease-out;
+        }
+
+        @keyframes aparecer {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .tarjeta {
+            background: var(--color-fondo);
+            border-radius: 32px;
+            box-shadow: var(--sombra);
+            overflow: hidden;
+            transition: var(--transicion);
+            border: 1px solid rgba(212, 114, 130, 0.2);
+            animation: flotar 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-8px) rotateX(2deg); }
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-12px) rotateX(4deg);
+            box-shadow: var(--sombra-hover);
+            animation: none;
+        }
+
+        .tarjeta-banner {
+            height: 130px;
+            background: linear-gradient(135deg, var(--color-rosa), var(--color-rosa-oscuro));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tarjeta-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            animation: brilloBanner 4s ease-in-out infinite;
+        }
+
+        @keyframes brilloBanner {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Contenedor de la foto - GRANDE */
+        .foto-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: -100px auto 0;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .foto-perfil {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--color-fondo);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Efecto de rotación al hacer hover en la foto */
+        .foto-wrapper:hover .foto-perfil {
+            transform: scale(1.05) rotate(5deg);
+            border-width: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Marca de agua en la foto */
+        .foto-wrapper::after {
+            content: "© SRomlet";
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
+            z-index: 15;
+            pointer-events: none;
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .foto-wrapper:hover::after {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        /* Anillo decorativo alrededor de la foto */
+        .foto-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-rosa), var(--color-rosa-oscuro));
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .foto-wrapper:hover::before {
+            opacity: 0.3;
+            animation: rotarAnillo 3s linear infinite;
+        }
+
+        @keyframes rotarAnillo {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .tarjeta-info {
+            padding: 30px 30px 20px;
+            text-align: center;
+        }
+
+        .nombre {
+            color: var(--color-azul);
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .titulo {
+            color: var(--color-rosa);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .descripcion {
+            color: var(--color-gris-claro);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .badge-python {
+            display: inline-block;
+            background: rgba(212, 114, 130, 0.12);
+            color: var(--color-rosa);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: var(--transicion);
+            cursor: default;
+        }
+
+        .tarjeta-habilidades {
+            padding: 0 30px 25px;
+        }
+
+        .habilidades-titulo {
+            color: var(--color-azul);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .habilidades-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .habilidad {
+            background: rgba(212, 114, 130, 0.05);
+            padding: 15px 10px;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+        }
+
+        .habilidad:hover {
+            background: rgba(212, 114, 130, 0.15);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(212, 114, 130, 0.15);
+        }
+
+        .habilidad-icono {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .habilidad:hover .habilidad-icono {
+            transform: scale(1.15);
+        }
+
+        .habilidad:nth-child(1) .habilidad-icono { color: #E44D26; }
+        .habilidad:nth-child(2) .habilidad-icono { color: #264DE4; }
+        .habilidad:nth-child(3) .habilidad-icono { color: #F7DF1E; }
+        .habilidad:nth-child(4) .habilidad-icono { color: #3776AB; }
+
+        .habilidad-nombre {
+            font-weight: 600;
+            color: var(--color-gris);
+            font-size: 0.8rem;
+        }
+
+        .habilidad-nivel {
+            width: 100%;
+            height: 4px;
+            background: #E2E8F0;
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .habilidad-progreso {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-rosa), var(--color-rosa-oscuro));
+            border-radius: 2px;
+            transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .habilidad-progreso::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: brilloBarra 2s ease-in-out infinite;
+        }
+
+        @keyframes brilloBarra {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .tarjeta-acciones {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0 30px 35px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 0.95rem;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primario {
+            background: var(--color-rosa);
+            color: white;
+            box-shadow: 0 5px 15px rgba(212, 114, 130, 0.3);
+        }
+
+        .btn-primario:hover {
+            background: var(--color-rosa-oscuro);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(212, 114, 130, 0.4);
+        }
+
+        .btn-secundario {
+            background: transparent;
+            color: var(--color-rosa);
+            border: 2px solid var(--color-rosa);
+        }
+
+        .btn-secundario:hover {
+            background: var(--color-rosa);
+            color: white;
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .nota {
+            color: var(--color-gris-claro);
+            font-size: 0.8rem;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .volver-portafolio a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-rosa);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            padding: 10px 20px;
+            border-radius: 40px;
+            background: rgba(212, 114, 130, 0.08);
+        }
+
+        .volver-portafolio a:hover {
+            gap: 12px;
+            background: rgba(212, 114, 130, 0.15);
+            color: var(--color-rosa-oscuro);
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        @media (max-width: 550px) {
+            .habilidades-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tarjeta-acciones {
+                flex-direction: column;
+            }
+            
+            .foto-wrapper {
+                width: 160px;
+                height: 160px;
+                margin-top: -80px;
+            }
+            
+            .tarjeta-info {
+                padding: 25px 20px 15px;
+            }
+            
+            .tarjeta-habilidades {
+                padding: 0 20px 20px;
+            }
+            
+            .tarjeta-acciones {
+                padding: 0 20px 25px;
+            }
+            
+            .nombre {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .habilidades-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .foto-wrapper {
+                width: 140px;
+                height: 140px;
+                margin-top: -70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor-principal">
+        <div class="tarjeta">
+            <div class="tarjeta-banner"></div>
+            
+            <div class="foto-wrapper">
+                <img src="foto.jpg" alt="SRomlet - Desarrolladora Front-End & Full Stack" class="foto-perfil">
+            </div>
+            
+            <div class="tarjeta-info">
+                <h2 class="nombre">SRomlet</h2>
+                <p class="titulo">Front-End Developer | Full Stack en formación</p>
+                <div class="badge-python">
+                    <i class="fab fa-python"></i> Aprendiendo Python
+                </div>
+                <p class="descripcion">
+                    Transformando ideas en experiencias digitales. <strong>6+ proyectos reales</strong> entregados. 
+                    Actualmente ampliando mi stack hacia <strong>Backend con Python</strong> para ofrecer soluciones completas.
+                </p>
+            </div>
+            
+            <div class="tarjeta-habilidades">
+                <h3 class="habilidades-titulo">Mi stack técnico</h3>
+                <div class="habilidades-grid">
+                    <div class="habilidad">
+                        <div class="habilidad-icono"><i class="fab fa-html5"></i></div>
+                        <span class="habilidad-nombre">HTML5</span>
+                        <div class="habilidad-nivel"><div class="habilidad-progreso" style="width: 90%"></div></div>
+                    </div>
+                    <div class="habilidad">
+                        <div class="habilidad-icono"><i class="fab fa-css3-alt"></i></div>
+                        <span class="habilidad-nombre">CSS3</span>
+                        <div class="habilidad-nivel"><div class="habilidad-progreso" style="width: 88%"></div></div>
+                    </div>
+                    <div class="habilidad">
+                        <div class="habilidad-icono"><i class="fab fa-js"></i></div>
+                        <span class="habilidad-nombre">JavaScript</span>
+                        <div class="habilidad-nivel"><div class="habilidad-progreso" style="width: 70%"></div></div>
+                    </div>
+                    <div class="habilidad">
+                        <div class="habilidad-icono"><i class="fab fa-python"></i></div>
+                        <span class="habilidad-nombre">Python</span>
+                        <div class="habilidad-nivel"><div class="habilidad-progreso" style="width: 40%"></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tarjeta-acciones">
+                <a href="index.html#contacto" class="btn btn-primario">
+                    <i class="fas fa-paper-plane"></i> Contactar
+                </a>
+                <a href="#" onclick="abrirWhatsAppSeguro()" class="btn btn-secundario">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+        
+        <p class="nota">✨ Tarjeta interactiva con animaciones CSS, diseño responsive y marca de agua</p>
+        
+        <div class="volver-portafolio">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i> Volver al portafolio
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function abrirWhatsAppSeguro() {
+            const telefono = '5363263899';
+            const mensaje = 'Hola SRomlet, vi tu tarjeta de contacto y me gustaría conversar contigo sobre un proyecto.';
+            window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            return false;
+        }
+
+        // Animación de barras de progreso al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            const barras = document.querySelectorAll('.habilidad-progreso');
+            barras.forEach(barra => {
+                const ancho = barra.style.width;
+                barra.style.width = '0%';
+                setTimeout(() => {
+                    barra.style.width = ancho;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

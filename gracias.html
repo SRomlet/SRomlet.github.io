@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mensaje Enviado! | SRomlet</title>
+    
+    <meta name="description" content="Gracias por contactar a SRomlet - Tu mensaje ha sido enviado exitosamente">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-rosa: #D47282;
+            --color-rosa-oscuro: #B85C6B;
+            --color-azul: #1A2A44;
+            --color-gris-claro: #718096;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F8F9FA 0%, #F5E6E8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .contenedor {
+            max-width: 550px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(212, 114, 130, 0.2);
+            animation: aparecer 0.5s ease-out;
+        }
+
+        @keyframes aparecer {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .icono {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-rosa), var(--color-rosa-oscuro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .icono i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        h1 {
+            color: var(--color-azul);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--color-gris-claro);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .detalles {
+            background: #F8F9FA;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 25px 0;
+            text-align: left;
+            border-left: 4px solid var(--color-rosa);
+        }
+
+        .detalles h3 {
+            color: var(--color-azul);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .detalles p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primario {
+            background: var(--color-rosa);
+            color: white;
+        }
+
+        .btn-primario:hover {
+            background: var(--color-rosa-oscuro);
+            transform: translateY(-3px);
+        }
+
+        .btn-secundario {
+            background: transparent;
+            color: var(--color-rosa);
+            border: 2px solid var(--color-rosa);
+        }
+
+        .btn-secundario:hover {
+            background: var(--color-rosa);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contador {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--color-gris-claro);
+        }
+
+        .contador i {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 35px 25px;
+            }
+            
+            .botones {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="icono">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1>¡Mensaje enviado!</h1>
+        
+        <p>Gracias por contactarme. He recibido tu mensaje y lo revisaré personalmente.</p>
+        
+        <div class="detalles">
+            <h3><i class="fas fa-clock" style="color: var(--color-rosa); margin-right: 8px;"></i> ¿Qué sigue?</h3>
+            <p>1. Revisaré tu mensaje en las próximas horas</p>
+            <p>2. Prepararé una respuesta personalizada</p>
+            <p>3. Te contactaré por email o WhatsApp</p>
+        </div>
+        
+        <div class="botones">
+            <a href="index.html" class="btn btn-primario">
+                <i class="fas fa-home"></i> Volver al inicio
+            </a>
+            <a href="index.html#proyectos" class="btn btn-secundario">
+                <i class="fas fa-code"></i> Ver proyectos
+            </a>
+        </div>
+        
+        <div class="contador">
+            <i class="fas fa-redo-alt"></i> Redirigiendo en <span id="contador">10</span> segundos...
+        </div>
+    </div>
+
+    <script>
+        let segundos = 10;
+        const contadorSpan = document.getElementById('contador');
+        
+        const intervalo = setInterval(() => {
+            segundos--;
+            contadorSpan.textContent = segundos;
+            
+            if (segundos <= 0) {
+                clearInterval(intervalo);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
